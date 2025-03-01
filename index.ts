@@ -116,11 +116,11 @@ function exportJson(html: string, wikiPage: WikiPage) {
     console.info("Get DataValue enchant " + wikiPage.lang)
     DataValue["enchant"] = enchant
     try {
-        const PATH = path.join(__dirname, `./BEDataValue/`)
+        const PATH = path.join(__dirname, `../BEDataValue/`)
         if (!fs.existsSync(PATH)) {
             fs.mkdirSync(PATH)
         }
-        fs.writeFileSync(path.join(__dirname, `./BEDataValue/${wikiPage.lang}.json`), JSON.stringify(DataValue,null,4))
+        fs.writeFileSync(path.join(__dirname, `../BEDataValue/${wikiPage.lang}.json`), JSON.stringify(DataValue,null,4))
     } catch (err) {
         console.error(err);
     }
