@@ -42,4 +42,6 @@ jobs:
                 echo "CHROME_PATH=$(which google-chrome)" >> $GITHUB_ENV
             
             - name: Run script
-              run: ts-node index.ts
+              run: |
+                tsc index.ts
+                node index.js
