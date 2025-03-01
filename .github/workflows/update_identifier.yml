@@ -41,7 +41,8 @@ jobs:
                 echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
                 echo "CHROME_PATH=$(which google-chrome)" >> $GITHUB_ENV
             
+            - name: build script
+              run: tsc
+              
             - name: Run script
-              run: |
-                tsc index.ts
-                node index.js
+              run: node ./dist/index.js
