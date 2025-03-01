@@ -46,3 +46,9 @@ jobs:
               
             - name: Run script
               run: node ./dist/index.js
+
+            - uses: actions/upload-artifact@v4
+              with:
+                name: ${{github.sha}}
+                path: |
+                  BEDataValue/

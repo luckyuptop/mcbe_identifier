@@ -120,7 +120,7 @@ function exportJson(html: string, wikiPage: WikiPage) {
         if (!fs.existsSync(PATH)) {
             fs.mkdirSync(PATH)
         }
-        fs.writeFileSync(path.join(__dirname, `./BEDataValue/${wikiPage.lang}.json`), JSON.stringify(DataValue))
+        fs.writeFileSync(path.join(__dirname, `./BEDataValue/${wikiPage.lang}.json`), JSON.stringify(DataValue,null,4))
     } catch (err) {
         console.error(err);
     }
