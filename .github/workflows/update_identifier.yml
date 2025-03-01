@@ -1,0 +1,45 @@
+name: update_identifier
+
+on:
+    workflow_dispatch:
+
+jobs:
+    update:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: add-chinese-fonts
+              run: |
+                sudo apt-get install ttf-mscorefonts-installer
+                sudo apt-get install fontconfig
+                fc-list :lang=zh
+                ls -lh /usr/share/fonts/
+                mkfontscale
+                mkfontdir
+                fc-cache
+                fc-list :lang=zh
+
+            - name: Cache node modules
+              uses: actions/cache@v2
+              env:
+                cache-name: cache-node-modules
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                    ${{ runner.os }}-build-${{ env.cache-name }}-
+                    ${{ runner.os }}-build-
+                    ${{ runner.os }}-
+        
+            - name: Install Dependencies
+              run: npm install
+
+            - name: add_env
+              run: |
+                echo "ACTIONS_ALLOW_UNSECURE_COMMANDS=true" >> $GITHUB_ENV
+                echo "CHROME_PATH=$(which google-chrome)" >> $GITHUB_ENV
+            
+            - name: Run script
+              run: ts-node index.ts
