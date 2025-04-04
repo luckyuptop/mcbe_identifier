@@ -196,7 +196,7 @@ async function* getPage(browser: Browser): AsyncGenerator<{ html: string, wikiPa
 
 async function main() {
     const browser = await puppeteer.launch({
-        executablePath: process.env.CHROME_PATH || "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+        executablePath: process.env.CHROME_PATH
     });
 
     for await (let { html, wikiPage } of getPage(browser)) {
@@ -209,7 +209,7 @@ async function main() {
 }
 async function img() {
     const browser = await puppeteer.launch({
-        executablePath: process.env.CHROME_PATH || "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
+        executablePath: process.env.CHROME_PATH
     });
     let wikiPage = WIKITASK[0]
     const page = await browser.newPage();
