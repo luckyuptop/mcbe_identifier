@@ -116,11 +116,11 @@ function exportJson(html: string, wikiPage: WikiPage) {
     console.info("Get DataValue enchant " + wikiPage.lang)
     DataValue["enchant"] = enchant
     try {
-        const PATH = path.join(__dirname, `./BEDataValue/`)
+        const PATH = path.join(__dirname, `../BEDataValue/`)
         if (!fs.existsSync(PATH)) {
             fs.mkdirSync(PATH, { recursive: true })
         }
-        fs.writeFileSync(path.join(__dirname, `./BEDataValue/${wikiPage.lang}.json`), JSON.stringify(DataValue, null, 4))
+        fs.writeFileSync(path.join(__dirname, `../BEDataValue/${wikiPage.lang}.json`), JSON.stringify(DataValue,null,4))
     } catch (err) {
         console.error(err);
     }
@@ -155,8 +155,8 @@ async function downloadImage(page: Page, id: string, data: dv, type: string) {
     const content = await getResourceContent(page, id, url);
     if (!content) return;
     const fileType = data.icon.match(/\.[a-z]+\?/)?.toString().replace("?", "")
-    let PATH = path.join(__dirname, `./BEDataValue/images/${type}`)
-    const filePath = path.join(__dirname, `./BEDataValue/images/${type}/${data.namespace}${fileType}`)
+    let PATH = path.join(__dirname, `../BEDataValue/images/${type}`)
+    const filePath = path.join(__dirname, `../BEDataValue/images/${type}/${data.namespace}${fileType}`)
     try {
         if (!fs.existsSync(PATH)) {
             fs.mkdirSync(PATH, { recursive: true })
